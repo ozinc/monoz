@@ -1,0 +1,7 @@
+{
+  "endpoints": [
+    "http://api.oz.com",
+    "http://www.mbl.is"
+  ],
+  "interval": 60
+}
