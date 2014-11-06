@@ -1,0 +1,22 @@
+{
+  "name": "response-monitor",
+  "version": "0.1.0",
+  "description": "OZ API response monitoring system!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/ozinc/response-monitor"
+  },
+  "author": "Hrafn Eirísson <hrafn@oz.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ozinc/response-monitor/issues"
+  },
+  "homepage": "https://github.com/ozinc/response-monitor",
+  "dependencies": {
+    "request": "^2.47.0"
+  }
+}
