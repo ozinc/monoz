@@ -1,6 +1,6 @@
 {
-  "name": "monos",
-  "version": "0.2.0",
+  "name": "monoz",
+  "version": "0.2.2",
   "description": "Monitors the response times of any web application via simple probes!",
   "main": "index.js",
   "scripts": {
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/ozinc/monos"
+    "url": "http://github.com/ozinc/monoz"
   },
   "author": "Hrafn Eirísson <hrafn@oz.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ozinc/monos/issues"
+    "url": "https://github.com/ozinc/monoz/issues"
   },
-  "homepage": "https://github.com/ozinc/monos",
+  "homepage": "https://github.com/ozinc/monoz",
   "dependencies": {
     "async": "^0.9.0",
     "optimist": "^0.6.1",

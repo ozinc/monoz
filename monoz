@@ -44,7 +44,7 @@ if (endpoints.length === 0) {
 
 function usage() {
   console.log();
-  console.log('  Usage: ./monos [options]');
+  console.log('  Usage: ./monoz [options]');
   console.log()
   console.log('  Options:');
   console.log();
@@ -77,7 +77,7 @@ function simple(endpoint, callback) {
       // in config.json).
       if (datadogApiKey) {
         var metric = {
-          'metric': 'monos.response_time',
+          'metric': 'monoz.response_time',
           'points': [
             [ parseInt(new Date().getTime() / 1000), diff]
           ],
