@@ -1,5 +1,5 @@
-# Response Monitor
-> Monitor the response times of your API through DataDog!
+# MONOS
+> Monitor the client-side experience of your web application!
 
 ## How To Use
 

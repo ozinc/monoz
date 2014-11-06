@@ -1,21 +1,21 @@
 {
-  "name": "response-monitor",
-  "version": "0.1.0",
-  "description": "OZ API response monitoring system!",
+  "name": "monos",
+  "version": "0.2.0",
+  "description": "Monitors the response times of any web application via simple probes!",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/ozinc/response-monitor"
+    "url": "http://github.com/ozinc/monos"
   },
   "author": "Hrafn Eirísson <hrafn@oz.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ozinc/response-monitor/issues"
+    "url": "https://github.com/ozinc/monos/issues"
   },
-  "homepage": "https://github.com/ozinc/response-monitor",
+  "homepage": "https://github.com/ozinc/monos",
   "dependencies": {
     "async": "^0.9.0",
     "optimist": "^0.6.1",
