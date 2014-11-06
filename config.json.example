@@ -3,5 +3,6 @@
     "http://api.oz.com",
     "http://www.mbl.is"
   ],
-  "interval": 60
+  "interval": 60, 
+  "datadogApiKey": "..."
 }
