@@ -6,7 +6,7 @@ var config = require('./config');
 var util = require('util');
 var S = require('string');
 var argv = require('optimist').argv;
-var datadog = require('./datadog');
+var datadog = require('./lib/datadog');
 
 // Help?
 
