@@ -54,9 +54,30 @@ function usage() {
   console.log();
 }
 
+// Flushes queue to Datadog
+function flushDatadogQueue() {
+  console.log('> flushing data to Datadog');
+// Deliver the metrics to DataDog (if some DataDog API key was provided in config.json).
+  if (datadogApiKey) {
+    datadog.send(datadogApiKey, function (err) {
+      if (err) {
+        console.log('> failed to send stats to DataDog!');
+        console.log(err);
+      } else {
+        console.log('> successfully delivered stats to DataDog.');
+        console.log();
+      }
+    });
+  } else {
+    console.log();
+  }
+}
+
+
 // Runs all of the probes.
 
 function run() {
+  flushDatadogQueue();
   console.log('> running all probes');
 
   var fns = [];
@@ -69,12 +90,15 @@ function run() {
 
     // Adds DataDog to the probe options.
     if (datadogApiKey) {
-      probe = _.extend(probe, { datadogApiKey: datadogApiKey });
+      probe = _.extend(probe, { datadogApiKey: datadogApiKey, sourceName: sourceName });
     }
 
-    fns.push(probeModules[probe.type](probe));
+    console.log('  Queueing '+ probe.name);
+    // FIXME: This might not be the best way to expose datadog to the module
+    fns.push(probeModules[probe.type](probe, function(){}, datadog));
   }
 
+  // FIXME: This never executes.... hence the new flushDatadotQueue function 
   async.series(fns, function (err) {
     if (err) {
       console.log('ERROR: test run failed!');
@@ -99,6 +123,7 @@ function run() {
 }
 
 // Run immediately
+
 run();
 
 // If a DataDog API key is provided we want to run continuously.
