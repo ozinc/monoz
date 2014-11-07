@@ -10,4 +10,4 @@
 
 ## TODO
 
-* Create a probe capable of authorization with basic auth/OAuth.
+* Make it EASILY installable and updatable!
