@@ -1,8 +1,7 @@
 {
-  "endpoints": [
-    "http://api.oz.com",
-    "http://www.mbl.is"
+  "probes": [
+    { "name": "API root", "type": "http", "url": "http://api.oz.com" }
   ],
-  "interval": 60, 
+  "interval": 60,
   "datadogApiKey": "..."
 }
