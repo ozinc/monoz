@@ -1,6 +1,14 @@
 {
+  "templates": {
+    "Set Headers": {
+      "type": "http",	
+      "method": "GET",
+      "headers": {"User-Agent": "Monoz", "X-Foo": "Bar"}
+    }
+  },
   "probes": [
-    { "name": "API root", "type": "http", "url": "http://api.oz.com" }
+    { "name": "API root", "type": "http", "url": "http://api.oz.com" },
+    { "name": "API root from template", "template": "Set Headers", "url": "http://api.oz.com" },
   ],
   "interval": 60,
   "datadogApiKey": "..."

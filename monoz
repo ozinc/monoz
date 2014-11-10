@@ -41,6 +41,10 @@ if (probes.length === 0) {
   process.exit(-1);
 }
 
+// Resolve templates
+var templates = [];
+_.forEach(config.templates, function (value, key) { templates[key] = value; } );
+
 // Helper functions
 
 function usage() {
@@ -60,10 +64,27 @@ function run() {
   console.log('> running all probes');
 
   var fns = [];
+
+  // Resolve probes
   for (var i = 0; i < probes.length; i++) {
     var probe = probes[i];
+
+    // Apply template - start with that as type can come from there
+    if (probe.template) {
+      if (!templates[probe.template]) {
+        console.log('  ERR: template "' + probe.template + '" does not exist, skipping probe.');
+        continue;
+      }
+      else {
+        // Applying probe over template so values from template don't override the probe settings
+        probe = _.extend({}, templates[probe.template], probe);
+      }
+    }
+
+    // Verify we have an implementation of the type defined for the probe
     if (!_.has(probeModules, probe.type)) {
       console.log('  ERR: no probe with type=' + probe.type + ' exists, skipping.');
+      console.log(JSON.stringify(probe));
       continue;
     }
 
@@ -83,6 +104,7 @@ function run() {
 
     // Deliver the metrics to DataDog (if some DataDog API key was provided in config.json).
     if (datadogApiKey) {
+      console.log('> Sending stats to DataDog: '+ datadog.getQueueSize());
       datadog.send(datadogApiKey, function (err) {
         if (err) {
           console.log('> failed to send stats to DataDog!');
