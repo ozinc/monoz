@@ -61,7 +61,7 @@ function usage() {
 // Runs all of the probes.
 
 function run() {
-  console.log('> running all probes');
+  console.log('> running all probes at '+ (new Date().toISOString()));
 
   var fns = [];
 
