@@ -26,4 +26,4 @@
   - ~~Support for host-replacement in Segment URLs (single or array, in which case we try all)~~
   - Stubbornness as well? (lo-pri)
 * VX Multi Playlist server instance checkin
-  - Support for host-replacement in (master and media) playlist URLs (single or array, in which case we try all)
+  - ~~Support for host-replacement in (master and media) playlist URLs (single or array, in which case we try all)~~
