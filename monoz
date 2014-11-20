@@ -1,10 +1,17 @@
 #!/usr/bin/env node
 
+console.log('Hello!');
+
 var request = require('request');
+console.log('W');
 var async = require('async');
+console.log('o');
 var config = require('./config');
+console.log('r');
 var util = require('util');
+console.log('l');
 var argv = require('optimist').argv;
+console.log('d');
 var datadog = require('./lib/datadog');
 var probeModules = require('./lib/probes');
 var _ = require('lodash');
