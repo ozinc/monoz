@@ -25,7 +25,14 @@ if (argv.s || argv.source) {
 
 var datadogApiKey = config.datadogApiKey;
 var interval = (config.interval || 60) * 1000;
-var probes = config.probes || [];
+
+// Resolve probes
+var probes = config.probes || {};
+
+// Resolve templates
+var templates = [];
+_.forEach(config.templates, function (value, key) { templates[key] = value; } );
+
 
 if (!datadogApiKey) {
   console.log('WARN: You did not provide a DataDog API key so not logging to DataDog.');
@@ -36,14 +43,11 @@ if (datadogApiKey && !sourceName) {
   process.exit(-1);
 }
 
-if (probes.length === 0) {
+if (_.size(probes) === 0) {
   console.log('ERR: You need to provide a non-zero list of probes in config.json.');
   process.exit(-1);
 }
 
-// Resolve templates
-var templates = [];
-_.forEach(config.templates, function (value, key) { templates[key] = value; } );
 
 // Helper functions
 
@@ -66,14 +70,14 @@ function run() {
   var fns = [];
 
   // Resolve probes
-  for (var i = 0; i < probes.length; i++) {
-    var probe = probes[i];
+  _.forEach(probes, function (probe, key) {
+    probe.name = key;
 
     // Apply template - start with that as type can come from there
     if (probe.template) {
       if (!templates[probe.template]) {
         console.log('  ERR: template "' + probe.template + '" does not exist, skipping probe.');
-        continue;
+        return;
       }
       else {
         // Applying probe over template so values from template don't override the probe settings
@@ -85,7 +89,7 @@ function run() {
     if (!_.has(probeModules, probe.type)) {
       console.log('  ERR: no probe with type=' + probe.type + ' exists, skipping.');
       console.log(JSON.stringify(probe));
-      continue;
+      return;
     }
 
     // Adds DataDog and the source name to the probe options.
@@ -94,7 +98,7 @@ function run() {
     }
 
     fns.push(probeModules[probe.type](probe));
-  }
+  });
 
   async.series(fns, function (err) {
     if (err) {

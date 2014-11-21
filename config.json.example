@@ -3,15 +3,23 @@
     "Set Headers": {
       "type": "http",	
       "method": "GET",
+      "ddTags": { "foo": "bar", "bar": "B5" },
       "headers": {"User-Agent": "Monoz", "X-Foo": "Bar"}
     }
-    "OZ VX": {"type": "vx", "user": "me@example.com", "pass": "MyOZPassword", "headers": {"x-application-token": "zclient", "x-application-secret": "zclient"} }
+    "OZ VX": {
+      "type": "vx",
+      "user": "me@example.com", "pass": "MyOZPassword",
+      "headers": { "x-application-token": "zclient", "x-application-secret": "zclient" }
+    }
   },
-  "probes": [
-    { "name": "API root", "type": "http", "url": "http://api.oz.com" },
-    { "name": "API root from template", "template": "Set Headers", "url": "http://api.oz.com" },
-    { "name": "VX RUV", "template": "OZ VX", "channel": "ruv", "offering": "of9a3a75b-f4c2-4863-8326-69fc246e605f" }
-  ],
+  "probes": {
+    "API root": { "type": "http", "url": "http://api.oz.com" },
+    "API root from template": { "template": "Set Headers", "url": "http://api.oz.com" },
+    "VX RUV": {
+      "template": "OZ VX",
+      "channel": "ruv", "offering": "of9a3a75b-f4c2-4863-8326-69fc246e605f"
+    }
+  },
   "interval": 60,
   "datadogApiKey": "..."
 }
