@@ -15,7 +15,7 @@
   - ~~Config property ddTags assigend as tags to metrics submitted to Datadog~~
   - Config property ddTags from template/probe merged, probe config should not completely override template (verify)
   - Support for expectString on probe, for basic output verification
-  - Change probes from array to directory?
+  - ~~Change probes from array to dictionary?~~
   - probe name vs endpoint tag in Datadog - not intuitive
   - ~~Include probe type as a tag?~~
   - Have all report to the same metric? (or default + per-test configurable)
