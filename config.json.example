@@ -5,7 +5,7 @@
       "method": "GET",
       "ddTags": { "foo": "bar", "bar": "B5" },
       "headers": {"User-Agent": "Monoz", "X-Foo": "Bar"}
-    }
+    },
     "OZ VX": {
       "type": "vx",
       "user": "me@example.com", "pass": "MyOZPassword",

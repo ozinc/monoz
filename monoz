@@ -30,9 +30,7 @@ var interval = (config.interval || 60) * 1000;
 var probes = config.probes || {};
 
 // Resolve templates
-var templates = [];
-_.forEach(config.templates, function (value, key) { templates[key] = value; } );
-
+var templates = config.templates;
 
 if (!datadogApiKey) {
   console.log('WARN: You did not provide a DataDog API key so not logging to DataDog.');
