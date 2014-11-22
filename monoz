@@ -24,6 +24,7 @@ if (argv.s || argv.source) {
 }
 
 var datadogApiKey = config.datadogApiKey;
+var runOnce = argv.once || !datadogApiKey;
 var interval = (config.interval || 60) * 1000;
 
 // Resolve probes
@@ -57,19 +58,24 @@ function usage() {
   console.log();
   console.log('    -h, --help     Shows this help.');
   console.log('    -s, --source   A name identifying this process as a source in DataDog.');
+  console.log('    --once         Run only once (implied if datadog API key is omitted in config)');
+  console.log('    --probe name   Run only the probe configured as with <name>');
   console.log();
 }
 
 // Runs all of the probes.
 
 function run() {
-  console.log('> running all probes at '+ (new Date().toISOString()));
+  console.log('> running probes at '+ (new Date().toISOString()));
 
   var fns = [];
 
   // Resolve probes
   _.forEach(probes, function (probe, key) {
     probe.name = key;
+
+    if (argv.probe && argv.probe != key)
+      return;
 
     // Apply template - start with that as type can come from there
     if (probe.template) {
@@ -105,7 +111,7 @@ function run() {
     }
 
     // Deliver the metrics to DataDog (if some DataDog API key was provided in config.json).
-    if (datadogApiKey) {
+    if (!runOnce && datadogApiKey) {
       console.log('> Sending stats to DataDog: '+ datadog.getQueueSize());
       datadog.send(datadogApiKey, function (err) {
         if (err) {
@@ -127,6 +133,7 @@ function run() {
 run();
 
 // If a DataDog API key is provided we want to run continuously.
-if (datadogApiKey) {
+if (!runOnce && datadogApiKey) {
+  console.log('Running every '+ interval/1000 +' seconds');
   setInterval(run, interval);
 }
