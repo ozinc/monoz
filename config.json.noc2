@@ -1,0 +1,142 @@
+{
+  "templates": {
+    "OZ Client": {
+      "type": "http", 
+      "method": "GET",
+      "ddTags": { "checkgroup:": "ozapi" },
+      "headers": { "Authorization": "Basic dG9sbGlAb3ouY29tOnRlc3RpbmcxMjM=",
+        "x-application-token": "zclient", "x-application-secret": "zclient" }
+    },
+    "OZ VX": {
+      "type": "vx",
+      "user": "tolli@oz.com", "pass": "testing123",
+      "headers": { "x-application-token": "zclient", "x-application-secret": "zclient" }
+    },
+    "OZ VX Heroku": {
+      "type": "vx",
+      "user": "tolli@oz.com", "pass": "testing123",
+      "tokenUrl": "http://playlist.oz.com/token/",
+      "headers": { "x-application-token": "zclient", "x-application-secret": "zclient" }
+    }
+  },
+  "probes": {
+    "API root": { 
+      "type": "http",
+      "url": "http://api.oz.com/", "expectString": "api_router_z", "timout": 10
+    },
+    "API Now+Next RUV+Stod2": { 
+      "template": "OZ Client",
+      "url": "https://api.oz.com/v1/schedule/nowandnext?channels=ruv:ruv,netfrelsi:stod2",
+      "expectString": ""
+    },
+    "API Authorization": { 
+      "template": "OZ Client",
+      "url": "https://api.oz.com/v1/authorizations", "expectString": "client_ioz"
+    },
+    "API Content": { 
+      "template": "OZ Client",
+      "url": "https://api.oz.com/v1/content/fd44e3aaa098d5bc616247cc3fa8f5b6",
+      "expectString": "Raising Hope"
+    },
+    "API EPG for a Single Channel": { 
+      "template": "OZ Client",
+      "url": "https://api.oz.com/v1/indexes/user_channels/ruv/ruv?include=now_showing,schedule",
+      "expectString": "3bc635e866a4bf1c15ea5b8e63ab685b"
+    },
+    "API Genres": { 
+      "template": "OZ Client",
+      "url": "https://api.oz.com/v1/vod/categories", "expectString": "Action"
+    },
+    "API User Channels": { 
+      "template": "OZ Client",
+      "url": "https://api.oz.com/v1/indexes/user_channels", "expectString": "of9a3a75b-f4c2-4863-8326-69fc246e605f"
+    },
+    "API VOD Movies RUV": { 
+      "template": "OZ Client",
+      "url": "https://api.oz.com/v1/vod?items=20&page=0&type=movies&provider=ruv.ruv&includeCollection=true",
+      "expectString": "content_id"
+    },
+    "API VOD Series Episode List": { 
+      "template": "OZ Client",
+      "url": "https://api.oz.com/v1/vod/series/bb7afe745922e3546569f5d36820b5da/episodes",
+      "expectString": "content_id"
+    },
+    "API VOD TV Shows": { 
+      "template": "OZ Client",
+      "url": "https://api.oz.com/v1/vod?items=20&page=0&type=series&provider=ruv.ruv&includeCollection=true",
+      "expectString": "series_episodes_url"
+    },
+    "VX LazyTown": { 
+      "template": "OZ VX",
+      "channel": "lazytv", "offering": "oa14dc243-32d2-4d4e-bcc7-18bda0707482"
+    },
+    "VX RUV": { 
+      "template": "OZ VX",
+      "channel": "ruv", "offering": "of9a3a75b-f4c2-4863-8326-69fc246e605f"
+    },
+    "VX RUV via cdn3": { 
+      "template": "OZ VX",
+      "channel": "ruv", "offering": "of9a3a75b-f4c2-4863-8326-69fc246e605f",
+      "vxPlaylist": "cdn3.srv.oz.com"
+    },
+    "VX RUV via cdn4": { 
+      "template": "OZ VX",
+      "channel": "ruv", "offering": "of9a3a75b-f4c2-4863-8326-69fc246e605f",
+      "vxPlaylist": "cdn4.srv.oz.com"
+    },
+    "VX RUV served by hls-is": { 
+      "template": "OZ VX",
+      "channel": "ruv", "offering": "of9a3a75b-f4c2-4863-8326-69fc246e605f",
+      "vxPlaylist": "hls-is.oz.com"
+    },
+    
+    "VX Stod2": { 
+      "template": "OZ VX",
+      "channel": "stod2",
+      "offering": "o6ccf9e5b-b9d1-4b2b-b783-0e33cae1ced2"
+    },
+    "VX Stod2 via cdn3": { 
+      "template": "OZ VX",
+      "channel": "stod2",
+      "offering": "o6ccf9e5b-b9d1-4b2b-b783-0e33cae1ced2",
+      "vxPlaylist": "cdn3.srv.oz.com"
+    },
+    "VX Stod2 via cdn4": { 
+      "template": "OZ VX",
+      "channel": "stod2",
+      "offering": "o6ccf9e5b-b9d1-4b2b-b783-0e33cae1ced2",
+      "vxPlaylist": "cdn4.srv.oz.com"
+    },
+
+    "VX Bio via cdn3": { 
+      "template": "OZ VX",
+      "channel": "bio",
+      "offering": "ofa068ed7-eeb7-4b1b-89d1-de516eec8165",
+      "vxPlaylist": "cdn3.srv.oz.com"
+    },
+    "VX Bio via cdn4": { 
+      "template": "OZ VX",
+      "channel": "bio",
+      "offering": "ofa068ed7-eeb7-4b1b-89d1-de516eec8165",
+      "vxPlaylist": "cdn4.srv.oz.com"
+    },
+
+    
+
+    "VX TVP 1": { 
+      "template": "OZ VX",
+      "channel": "tvp1", "offering": "of724f31e-deda-407e-bb24-c4f8ed4ca6c0"
+    },
+    "VX TVP 1 via Turbobytes": { 
+      "template": "OZ VX",
+      "channel": "tvp1", "offering": "of724f31e-deda-407e-bb24-c4f8ed4ca6c0",
+      "vxSegment": "test.cdn.oz.com"
+    },
+    "VX Heroku Kino Polska": { 
+      "template": "OZ VX Heroku",
+      "channel": "kino_polska"
+    }
+  },
+  "interval": 60, 
+  "datadogApiKey": "9e8f45a6e8206f17b78c5ab6d7ec4c60"
+}
