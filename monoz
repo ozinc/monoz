@@ -74,7 +74,7 @@ function run() {
   _.forEach(probes, function (probe, key) {
     probe.name = key;
 
-    if (argv.probe && argv.probe != key)
+    if (argv.probe && argv.probe !== key)
       return;
 
     // Apply template - start with that as type can come from there
