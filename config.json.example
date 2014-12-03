@@ -15,6 +15,16 @@
   "probes": {
     "API root": { "type": "http", "url": "http://api.oz.com" },
     "API root from template": { "template": "Set Headers", "url": "http://api.oz.com" },
+    "VX VOD": { 
+      "template": "OZ VX",
+      "vxType": "vod",
+      "org": "ruv", "channel": "ruv", "offering": "o15289523-6bc0-48c8-a591-71c567fcf632"
+    },
+    "VX VOD Encrypted": { 
+      "template": "OZ VX",
+      "vxType": "vod",
+      "org": "netfrelsi", "channel": "stod2", "offering": "o754456eb-35af-4bba-8e54-8e012c1b6478"
+    },
     "VX RUV": {
       "template": "OZ VX",
       "channel": "ruv", "offering": "of9a3a75b-f4c2-4863-8326-69fc246e605f"
