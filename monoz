@@ -33,7 +33,11 @@ var probes = config.probes || {};
 // Resolve templates
 var templates = config.templates;
 
-if (!datadogApiKey) {
+if (argv.nodd) {
+  console.log('Not logging to DataDog');
+  datadogApiKey = undefined;
+}
+else if (!datadogApiKey) {
   console.log('WARN: You did not provide a DataDog API key so not logging to DataDog.');
 }
 
