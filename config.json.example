@@ -15,6 +15,12 @@
   "probes": {
     "API root": { "type": "http", "url": "http://api.oz.com" },
     "API root from template": { "template": "Set Headers", "url": "http://api.oz.com" },
+    "Media RUV": { 
+      "template": "OZ VX",
+      "type": "channelmedia",
+      "stills": true,
+      "org": "ruv", "channel": "ruv", "url": "https://api.oz.com/v1/indexes/user_channels/ruv/ruv"
+    },
     "VX VOD": { 
       "template": "OZ VX",
       "vxType": "vod",
